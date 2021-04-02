@@ -79,7 +79,7 @@ const Header = () => {
               ({ item, key, props }) =>
                 item && (
                   <animated.div
-                    tw="absolute z-40 right-1 top-12 mt-2 w-56 text-gray-100 bg-gray-800 rounded-md focus:outline-none shadow-lg origin-top-right ring-black ring-opacity-5 ring-1"
+                    tw="absolute z-40 right-1 top-12 mt-2 w-56 text-gray-100 bg-gray-800 focus:outline-none shadow-lg origin-top-right ring-black ring-opacity-5 ring-1"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="second-menu"
