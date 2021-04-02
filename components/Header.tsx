@@ -11,14 +11,37 @@ import '@reach/dialog/styles.css';
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const openMobileMenu = () => setShowMobileMenu(true);
+  const closeMobileMenu = () => setShowMobileMenu(false);
+
+  const [showClickMenu, setShowClickMenu] = useState(false);
+
   const AnimatedDialogOverlay = animated(DialogOverlay);
   const AnimatedDialogContent = animated(DialogContent);
-  const open = () => setShowMobileMenu(true);
-  const close = () => setShowMobileMenu(false);
+
   const showMobileMenuTransition = useTransition(showMobileMenu, null, {
     from: { opacity: 0, transform: `translate3d(0px,-10px,3px)` },
     enter: { opacity: 1, transform: `translate3d(0,0,0)` },
     leave: { opacity: 0, transform: `translate3d(0px,10px,3px)` },
+    config: config.stiff,
+  });
+
+  const showProductMenuTransition = useTransition(showClickMenu, null, {
+    from: {
+      opacity: 0,
+      scale: 95,
+      transform: `translate3d(3px,0px,10px)`,
+    },
+    enter: {
+      opacity: 1,
+      scale: 100,
+      transform: `translate3d(0,0,0)`,
+    },
+    leave: {
+      opacity: 0,
+      scale: 95,
+      transform: `translate3d(3px,0px,10px)`,
+    },
     config: config.stiff,
   });
 
@@ -47,10 +70,83 @@ const Header = () => {
             <button
               type="button"
               tw="relative hover:text-gray-500 focus:outline-none ring-accent-500 focus:ring-1"
+              onClick={() => setShowClickMenu((show) => !show)}
             >
               <VisuallyHidden>Open Second menu</VisuallyHidden>
               <HiDotsHorizontal tw="w-6 h-6" />
             </button>
+            {showProductMenuTransition.map(
+              ({ item, key, props }) =>
+                item && (
+                  <animated.div
+                    tw="absolute z-40 right-1 top-12 mt-2 w-56 text-gray-100 bg-gray-800 rounded-md focus:outline-none shadow-lg origin-top-right ring-black ring-opacity-5 ring-1"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="second-menu"
+                    key={key}
+                    style={props}
+                  >
+                    <div tw="py-1" role="none">
+                      <Link passHref href="/">
+                        <a
+                          tw="block px-4 py-2 text-sm hover:bg-gray-600"
+                          role="menuitem"
+                        >
+                          About Click Motto
+                        </a>
+                      </Link>
+                      <Link passHref href="/">
+                        <a
+                          tw="block px-4 py-2 text-sm hover:bg-gray-600"
+                          role="menuitem"
+                        >
+                          Pricing
+                        </a>
+                      </Link>
+                      <Link passHref href="/">
+                        <a
+                          tw="block px-4 py-2 text-sm hover:bg-gray-600"
+                          role="menuitem"
+                        >
+                          License
+                        </a>
+                      </Link>
+                      <Link passHref href="/">
+                        <a
+                          tw="block px-4 py-2 text-sm hover:bg-gray-600"
+                          role="menuitem"
+                        >
+                          Partnership
+                        </a>
+                      </Link>
+                      <Link passHref href="/">
+                        <a
+                          tw="block px-4 py-2 text-sm hover:bg-gray-600"
+                          role="menuitem"
+                        >
+                          Blog
+                        </a>
+                      </Link>
+                      <Link passHref href="/">
+                        <a
+                          tw="block px-4 py-2 text-sm hover:bg-gray-600"
+                          role="menuitem"
+                        >
+                          Help
+                        </a>
+                      </Link>
+                      <Link passHref href="/">
+                        <a
+                          tw="block px-4 py-2 text-sm hover:bg-gray-600"
+                          role="menuitem"
+                        >
+                          Join The Team
+                        </a>
+                      </Link>
+                    </div>
+                  </animated.div>
+                )
+            )}
           </div>
           <div tw="width[2px] h-8 bg-gray-300" />
           <div tw="space-x-3">
@@ -96,7 +192,7 @@ const Header = () => {
                     <button
                       type="button"
                       tw="absolute right-1 top-4 text-gray-400 hover:text-gray-500 rounded-md focus:outline-none focus:ring-accent-500 focus:ring-2"
-                      onClick={close}
+                      onClick={closeMobileMenu}
                     >
                       <span tw="sr-only">Close</span>
                       <HiOutlineX tw="w-6 h-6" />
