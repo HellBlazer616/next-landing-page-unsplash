@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
@@ -41,22 +42,29 @@ const HorizontalMenu = () => {
           id="scroll__container"
         >
           {LIST.map((value, index) => (
-            <div key={value.name}>
-              <div className="category__card">
-                <div className="category__image" tw="relative">
-                  <Image
-                    src={value.image}
-                    alt={value.name}
-                    priority
-                    layout="fill"
-                    objectFit="cover"
-                  />
+            <Link
+              passHref
+              href={`?search=${value.name}`}
+              scroll={false}
+              key={value.name}
+            >
+              <a>
+                <div className="category__card">
+                  <div className="category__image" tw="relative">
+                    <Image
+                      src={value.image}
+                      alt={value.name}
+                      priority
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                  <div className="category__name">
+                    <p>{value.name}</p>
+                  </div>
                 </div>
-                <div className="category__name">
-                  <p>{value.name}</p>
-                </div>
-              </div>
-            </div>
+              </a>
+            </Link>
           ))}
         </HorizontalMenuComponent>
         <button

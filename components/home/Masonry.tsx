@@ -1,34 +1,39 @@
+import Image from 'next/image';
+import { HiHeart, HiPlus } from 'react-icons/hi';
 import tw, { styled } from 'twin.macro';
+import { Base } from '../../Base';
+import IconButton from '../common/IconButton';
 import Dropdown from './Dropdown';
 
-const Masonry = () => {
+type Props = {
+  portrait?: boolean;
+  data: [Base];
+};
+
+const Masonry = ({ portrait, data }: Props) => {
   return (
-    <div tw="container mt-24 mx-auto p-4 space-y-3">
+    <div
+      tw="container mt-24 mx-auto p-4 space-y-3"
+      className={portrait === true ? 'col__2x' : undefined}
+    >
       <Dropdown />
       <Wrapper>
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" className="col__2x" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" className="col__2x" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
-        <div tw="bg-gray-200" />
+        {data.map((value) => {
+          return (
+            <ImageBox>
+              <div className="image__wrapper">
+                <div
+                  className="btn__group"
+                  tw="absolute z-10 right-0 top-0 p-2 space-x-2"
+                >
+                  <IconButton tw="p-4" Icon={<HiHeart tw="w-5 h-5" />} />
+                  <IconButton tw="" Icon={<HiPlus tw="w-5 h-5" />} />
+                </div>
+                <Image src={value.urls.regular} layout="fill" />
+              </div>
+            </ImageBox>
+          );
+        })}
       </Wrapper>
     </div>
   );
@@ -51,5 +56,21 @@ const Wrapper = styled.div`
   }
   .col__3x {
     grid-row-end: span 3;
+  }
+`;
+
+const ImageBox = styled.div`
+  & .image__wrapper {
+    ${tw`relative w-full h-full`}
+  }
+  & .btn__group {
+    display: none;
+  }
+  :hover {
+    & .image__wrapper {
+      & .btn__group {
+        display: block;
+      }
+    }
   }
 `;

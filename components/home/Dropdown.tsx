@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { HiChevronDown } from 'react-icons/hi';
@@ -28,19 +29,23 @@ const Dropdown = () => {
 
   return (
     <div tw="flex items-center justify-between">
-      <div>
-        <button
-          type="button"
-          tw="inline-flex items-center px-3 py-1.5 text-sm font-semibold hover:bg-gray-100 border border-transparent rounded focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
-        >
-          All
-        </button>
-        <button
-          type="button"
-          tw="inline-flex items-center px-3 py-1.5 text-sm font-semibold hover:bg-gray-100 border border-transparent rounded focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
-        >
-          Photos
-        </button>
+      <div tw="space-x-3">
+        <Link passHref scroll={false} href="?search=All">
+          <a
+            type="button"
+            tw="inline-flex items-center px-3 py-1.5 text-sm font-semibold hover:bg-gray-100 border border-transparent rounded focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
+          >
+            All
+          </a>
+        </Link>
+        <Link passHref scroll={false} href="?search=Photos">
+          <a
+            type="button"
+            tw="inline-flex items-center px-3 py-1.5 text-sm font-semibold hover:bg-gray-100 border border-transparent rounded focus:outline-none focus:ring-accent-500 focus:ring-offset-2 focus:ring-2"
+          >
+            Photos
+          </a>
+        </Link>
       </div>
       <div tw="relative">
         <button
@@ -59,7 +64,7 @@ const Dropdown = () => {
           ({ item, key, props }) =>
             item && (
               <animated.div
-                tw="absolute right-0 mt-2 w-48 bg-white focus:outline-none shadow-lg origin-top-right ring-black ring-opacity-5 ring-1"
+                tw="absolute z-10 right-0 mt-2 w-48 bg-white focus:outline-none shadow-lg origin-top-right ring-black ring-opacity-5 ring-1"
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="options-menu"

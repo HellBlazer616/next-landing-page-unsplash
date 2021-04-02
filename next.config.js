@@ -22,7 +22,7 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ["api.pexels.com"],
+    domains: ["api.pexels.com", 'api.unsplash.com', 'images.unsplash.com'],
   },
   reactStrictMode: true,
 };
