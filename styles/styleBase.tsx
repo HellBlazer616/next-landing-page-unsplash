@@ -32,6 +32,10 @@ const stylesBase = css`
     font-family: 'Inter';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    ::placeholder {
+      color: inherit;
+      font-weight: normal;
+    }
   }
 
   code {
