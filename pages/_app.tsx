@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Global styles={stylesBase} />
       <Component {...pageProps} />
       <Toaster />
-      <ReactQueryDevtools initialIsOpen={false} position="top-right" />
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-left" />
     </QueryClientProvider>
   );
 }

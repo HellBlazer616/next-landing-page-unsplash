@@ -4,7 +4,6 @@ const stylesBase = css`
   body {
     font-family: 'Inter';
     background: #ffffff;
-    color: #fff;
   }
 
   html {
